@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
+from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES, uploadfile
 
 
 class SnippetSerializer(serializers.Serializer):
@@ -9,16 +9,16 @@ class SnippetSerializer(serializers.Serializer):
     linenos = serializers.BooleanField(required=False)
     language = serializers.ChoiceField(choices=LANGUAGE_CHOICES, default='python')
     style = serializers.ChoiceField(choices=STYLE_CHOICES, default='friendly')
-
+    file = serializers.CharField(required=False)
     def create(self, validated_data):
         """
-        Create and return a new `Snippet` instance, given the validated data.
+        Create and return a new `uploadfile` instance, given the validated data.
         """
-        return Snippet.objects.create(**validated_data)
+        return uploadfile.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         """
-        Update and return an existing `Snippet` instance, given the validated data.
+        Update and return an existing `uploadfile` instance, given the validated data.
         """
         instance.title = validated_data.get('title', instance.title)
         instance.code = validated_data.get('code', instance.code)

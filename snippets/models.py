@@ -17,3 +17,20 @@ class Snippet(models.Model):
 
     class Meta:
         ordering = ('created',)
+
+class uploadfile(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=100, blank=True, default='')
+    code = models.TextField()
+    linenos = models.BooleanField(default=False)
+    language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
+    style = models.CharField(choices=STYLE_CHOICES, default='friendly', max_length=100)
+    file = models.FileField(blank=False, null=False)
+    class Meta:
+        ordering = ('created',)
+
+class Category(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=100, blank=True, default='')
+    class Meta:
+        ordering = ('created',)
