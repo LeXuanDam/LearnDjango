@@ -14,7 +14,9 @@ class Category(models.Model):
     def __str__(self):
         return "%s %s" % (self.name)
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.IntegerField()
+    # category_id = models.IntegerField()
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True, default='')
     file = models.TextField(max_length=100, blank=True, default='')
